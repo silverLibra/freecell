@@ -1,0 +1,131 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
+
+body {
+  font-family: 'Noto Sans TC', Helvetica, Arial, sans-serif !important;
+  margin: 0;
+  background-color: #aee08c;
+}
+
+#root {
+  width: calc(120px * 8 + 300px);
+  min-width: calc(120px * 8 + 300px);
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background-color: #aee08c;
+  height: 100%;
+  margin: 0 auto;
+  min-height: 1200px;
+}
+
+.card {
+  width: 120px;
+  height: 185px;
+  position: absolute;
+  display: block;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 5px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 1px solid rosybrown;
+}
+
+.card.red {
+  background-color: red;
+}
+
+.card.black {
+  background-color: grey;
+}
+
+.card.back {
+  background-color: greenyellow;
+}
+
+
+.card.active {
+  border: 4px solid gold;
+  background-color: gold;
+  box-sizing: inherit;
+  margin-left: -8px;
+}
+
+.cardsBorder {
+  position: absolute;
+  width: 120px;
+  height: 185px;
+  border: 4px solid gold;
+  background-color: transparent;
+  z-index: 300;
+  border-radius: 15px;
+  pointer-events: none;
+}
+
+.cardsTempAreaBorder {
+  position: absolute;
+  width: 120px;
+  height: 185px;
+  border: 4px solid #FF6303;
+  background-color: transparent;
+  z-index: 1;
+  border-radius: 15px;
+}
+
+.cardsTargetAreaBorder {
+  position: absolute;
+  width: 120px;
+  height: 185px;
+  border: 4px solid #216EFF;
+  background-color: transparent;
+  z-index: 1;
+  border-radius: 15px;
+}
+
+
+.hideCard {
+  opacity: 0;
+}
+
+@for $i from 0 through 51 {
+  $rowIndex : floor($i / 8);
+  $colIndex : $i % 8;
+  .cardSendAnimation#{$i} {
+    left:0;
+    top:0;
+    animation-name:cardSendAnimationFrames#{$i};
+    animation-iteration-count:1;
+    animation-duration:200ms;
+    animation-fill-mode:forwards;
+    animation-delay:#{$i*20}ms;
+    pointer-events: none;
+  }
+  .cardEnd#{$i}{
+    left:($colIndex*150)+15px;
+    top:($rowIndex*40)+300px;
+  }
+  .cardTest#{$i}{
+    position:absolute;
+    width:100px;
+    height:100px;
+    background:#f00;
+    font-size: 30px;
+  }
+  @keyframes cardSendAnimationFrames#{$i} {
+    from{
+      left:0;
+      top:0;
+    }
+    to{
+      left:($colIndex*150)+15px;
+      top:($rowIndex*40)+300px;
+    }
+  }
+}
+
+
+
+
+
+
